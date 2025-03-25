@@ -1,0 +1,66 @@
+extends CharacterBody2D
+
+
+@onready var level = $".."
+@onready var marker:Marker2D = $"./Marker2D"
+var attack_bool:bool = false
+
+
+func  _physics_process(delta: float) -> void:
+
+	# get_global_mouse_position() - получаем координаты мыши относительно глобальной сцены (level.gd)
+
+	# корабль движется за мышкой
+	#self.position.x = get_global_mouse_position().x
+	#self.position.y = get_global_mouse_position().y
+	# тоже самое но в одну строку
+	#self.position = get_global_mouse_position()
+	
+	#print(position)
+	
+
+	# position.direction_to(x) - вычисляет плавное движение к точке x
+
+	# движение корабля 
+	if((position.x <= get_global_mouse_position().x - 15 or position.x >= get_global_mouse_position().x + 15) or (position.y <= get_global_mouse_position().y - 15 or position.y >= get_global_mouse_position().y + 15)):
+		if((get_global_mouse_position().x >0 and get_global_mouse_position().x < 1280 and get_global_mouse_position().y < 700 and get_global_mouse_position().y > 530) or (global_position.x >30 and global_position.x < 1250 and global_position.y < 680 and global_position.y > 480)):
+			self.global_position +=  self.position.direction_to(get_global_mouse_position()) * 500 * delta
+		else:
+			if(get_global_mouse_position() > self.global_position and self.global_position.x >30 and self.global_position.x < 1250):
+				self.global_position.x += 500 * delta
+			if(get_global_mouse_position() < self.global_position and self.global_position.x >30 and self.global_position.x < 1250):
+				self.global_position.x -= 500 * delta
+
+
+
+
+func _process(delta: float):
+	# включение / выключение атаки
+	if(Input.is_action_just_pressed("attack")):
+		attack_bool = true
+	if(Input.is_action_just_released("attack")):
+		attack_bool = false
+
+
+
+# сигнал узла timer срабатывает раз в какое-то время
+func _on_timer_timeout() -> void:
+	print("ok timer")
+
+	if(attack_bool):
+		# load() - загружает сцену в переменную
+		var bullet_scene = load("res://ALL_scenes/bullet/bullet.tscn")
+		# .instantiate() - инициализирует сцену как узел (это нужно для дальнейшего использования)
+		var bullet:Area2D = bullet_scene.instantiate()
+		#add_child(bullet)
+		
+		#bullet.position.x = 500
+		#bullet.position.y = 500
+		
+		bullet.global_position  = marker.global_position 
+
+		# add_child() - добавляет дочерний узел к этой сцене
+		# add_child(bullet)
+
+		# .add_child() - добавляет дочерний узел к узлу или к другой сцене
+		level.add_child(bullet)
