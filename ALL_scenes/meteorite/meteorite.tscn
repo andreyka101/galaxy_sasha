@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://d0n12qrg13ua8" path="res://photo/meteorite/meteorite4.png" id="8_iax2o"]
 [ext_resource type="Texture2D" uid="uid://dfyh0dj426tm3" path="res://photo/meteorite/meteorite5.png" id="9_i1lca"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6csh7"]
+radius = 25.02
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ixgqu"]
 animations = [{
 "frames": [{
@@ -28,7 +31,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"explosion",
-"speed": 7.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -71,15 +74,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6csh7"]
-radius = 25.02
-
-[node name="Meteorite" type="CharacterBody2D"]
+[node name="Meteorite" type="Area2D"]
 script = ExtResource("1_b5gxj")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ixgqu")
-animation = &"meteor 5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6csh7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ixgqu")
+animation = &"meteor 2"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

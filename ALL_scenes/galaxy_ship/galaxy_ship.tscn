@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cwrkixbbjesk6"]
+[gd_scene load_steps=35 format=3 uid="uid://cwrkixbbjesk6"]
 
 [ext_resource type="Script" uid="uid://ckexuwxllay5h" path="res://ALL_scenes/galaxy_ship/galaxy_ship.gd" id="1_qmcd2"]
 [ext_resource type="Texture2D" uid="uid://d4b67mcqip268" path="res://photo/spacecraft/spacecraft1.png" id="2_f03ek"]
@@ -17,6 +17,22 @@
 [ext_resource type="Texture2D" uid="uid://bpeenfcspasp0" path="res://photo/spacecraft/spacecraft6.png" id="15_qfh4q"]
 [ext_resource type="Texture2D" uid="uid://cxftef5lbo7ar" path="res://photo/spacecraft/spacecraft7.png" id="16_5sqdt"]
 [ext_resource type="Texture2D" uid="uid://bdr4btoyyfbpn" path="res://photo/spacecraft/spacecraft8.png" id="17_ju5p8"]
+[ext_resource type="Texture2D" uid="uid://dws6i502jyglo" path="res://photo/spacecraft/spacecraft17.png" id="18_l187t"]
+[ext_resource type="Texture2D" uid="uid://bts03wtg78veu" path="res://photo/spacecraft/spacecraft18.png" id="19_lvet8"]
+[ext_resource type="Texture2D" uid="uid://bbnrlr0oyhj7e" path="res://photo/spacecraft/spacecraft19.png" id="20_6od11"]
+[ext_resource type="Texture2D" uid="uid://c10ar1uhl33i3" path="res://photo/spacecraft/spacecraft20.png" id="21_3dkki"]
+[ext_resource type="Texture2D" uid="uid://diivhyfib0iii" path="res://photo/spacecraft/spacecraft21.png" id="22_qrrad"]
+[ext_resource type="Texture2D" uid="uid://psx0njy3hohe" path="res://photo/spacecraft/spacecraft22.png" id="23_dk3oo"]
+[ext_resource type="Texture2D" uid="uid://dktohuokrq5c0" path="res://photo/spacecraft/spacecraft23.png" id="24_tw05m"]
+[ext_resource type="Texture2D" uid="uid://cxuh0vgm3mf3j" path="res://photo/spacecraft/spacecraft24.png" id="25_v6cya"]
+[ext_resource type="Texture2D" uid="uid://b16niy8qxdsay" path="res://photo/spacecraft/spacecraft25.png" id="26_aoh7q"]
+[ext_resource type="Texture2D" uid="uid://c6bcvhkdiba33" path="res://photo/spacecraft/spacecraft26.png" id="27_ag5l8"]
+[ext_resource type="Texture2D" uid="uid://by1ycobk4ka8r" path="res://photo/spacecraft/spacecraft27.png" id="28_6r6cd"]
+[ext_resource type="Texture2D" uid="uid://ci50yeydi0al1" path="res://photo/spacecraft/spacecraft28.png" id="29_7216k"]
+[ext_resource type="Texture2D" uid="uid://dcpd080gfmk6v" path="res://photo/spacecraft/spacecraft29.png" id="30_y6qwp"]
+[ext_resource type="Texture2D" uid="uid://cl546psffk6m8" path="res://photo/spacecraft/spacecraft30.png" id="31_du8uf"]
+[ext_resource type="Texture2D" uid="uid://b1fd4s5ljpnxu" path="res://photo/spacecraft/spacecraft31.png" id="32_6itlf"]
+[ext_resource type="Texture2D" uid="uid://dfbrn07uf3k8o" path="res://photo/spacecraft/spacecraft32.png" id="33_c2qvm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xkvga"]
 animations = [{
@@ -88,10 +104,58 @@ animations = [{
 "name": &"75-50%",
 "speed": 15.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_l187t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_lvet8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6od11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3dkki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_qrrad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_dk3oo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_tw05m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_v6cya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_aoh7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ag5l8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_6r6cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_7216k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_y6qwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_du8uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_6itlf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_c2qvm")
+}],
 "loop": true,
 "name": &"explosion",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [node name="Galaxy_ship" type="CharacterBody2D"]
@@ -107,6 +171,7 @@ scale = Vector2(1.76667, 1.76667)
 sprite_frames = SubResource("SpriteFrames_xkvga")
 animation = &"explosion"
 autoplay = "100-75%"
+frame_progress = 0.827895
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -37)

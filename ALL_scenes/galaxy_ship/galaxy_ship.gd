@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var level = $".."
 @onready var marker:Marker2D = $"./Marker2D"
 var attack_bool:bool = false
+var hp_player = 250
+
 
 
 func  _physics_process(delta: float) -> void:
@@ -36,22 +38,25 @@ func  _physics_process(delta: float) -> void:
 
 func _process(delta: float):
 	# включение / выключение атаки
-	if(Input.is_action_just_pressed("attack")):
-		attack_bool = true
-	if(Input.is_action_just_released("attack")):
-		attack_bool = false
+	#if(Input.is_action_just_pressed("attack")):
+		#attack_bool = true
+	#if(Input.is_action_just_released("attack")):
+		#attack_bool = false
+		
+		
+	attack_bool = true
 
 
 
 # сигнал узла timer срабатывает раз в какое-то время
 func _on_timer_timeout() -> void:
-	print("ok timer")
+	#print("ok timer")
 
 	if(attack_bool):
 		# load() - загружает сцену в переменную
 		var bullet_scene = load("res://ALL_scenes/bullet/bullet.tscn")
 		# .instantiate() - инициализирует сцену как узел (это нужно для дальнейшего использования)
-		var bullet:Area2D = bullet_scene.instantiate()
+		var bullet:CharacterBody2D = bullet_scene.instantiate()
 		#add_child(bullet)
 		
 		#bullet.position.x = 500
