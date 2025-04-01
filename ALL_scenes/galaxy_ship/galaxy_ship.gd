@@ -15,6 +15,7 @@ func  _physics_process(delta: float) -> void:
 	# корабль движется за мышкой
 	#self.position.x = get_global_mouse_position().x
 	#self.position.y = get_global_mouse_position().y
+	
 	# тоже самое но в одну строку
 	#self.position = get_global_mouse_position()
 	
