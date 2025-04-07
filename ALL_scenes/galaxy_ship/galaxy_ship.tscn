@@ -153,7 +153,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("33_c2qvm")
 }],
-"loop": true,
+"loop": false,
 "name": &"explosion",
 "speed": 15.0
 }]
@@ -169,9 +169,8 @@ polygon = PackedVector2Array(0, -34, -24, 14, 0, 14, 24, 14)
 position = Vector2(0, 2.2)
 scale = Vector2(1.76667, 1.76667)
 sprite_frames = SubResource("SpriteFrames_xkvga")
-animation = &"explosion"
+animation = &"100-75%"
 autoplay = "100-75%"
-frame_progress = 0.827895
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -37)

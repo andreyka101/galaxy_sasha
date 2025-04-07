@@ -5,10 +5,27 @@ extends CharacterBody2D
 @onready var marker:Marker2D = $"./Marker2D"
 var attack_bool:bool = false
 var hp_player = 250
+@onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
+var death = true
+var damage = false
 
 
 
 func  _physics_process(delta: float) -> void:
+	#print(hp_player)
+	
+
+	# если hp у корабля меньше или равен нулю то
+	if(hp_player <= 0 and death):
+		death = false
+		# корабль взрывается 
+		sprite.play("explosion")
+		await sprite.animation_finished
+		# а потом удаляется
+		self.queue_free()
+		#get_tree().change_scene_to_file("res://ALL_scenes/menu/menu.tscn")
+		
+		
 
 	# get_global_mouse_position() - получаем координаты мыши относительно глобальной сцены (level.gd)
 
@@ -25,7 +42,7 @@ func  _physics_process(delta: float) -> void:
 	# position.direction_to(x) - вычисляет плавное движение к точке x
 
 	# движение корабля 
-	if((position.x <= get_global_mouse_position().x - 15 or position.x >= get_global_mouse_position().x + 15) or (position.y <= get_global_mouse_position().y - 15 or position.y >= get_global_mouse_position().y + 15)):
+	if((position.x <= get_global_mouse_position().x - 15 or position.x >= get_global_mouse_position().x + 15) or (position.y <= get_global_mouse_position().y - 15 or position.y >= get_global_mouse_position().y + 15)) and death:
 		if((get_global_mouse_position().x >0 and get_global_mouse_position().x < 1280 and get_global_mouse_position().y < 700 and get_global_mouse_position().y > 530) or (global_position.x >30 and global_position.x < 1250 and global_position.y < 680 and global_position.y > 480)):
 			self.global_position +=  self.position.direction_to(get_global_mouse_position()) * 500 * delta
 		else:
@@ -53,7 +70,7 @@ func _process(delta: float):
 func _on_timer_timeout() -> void:
 	#print("ok timer")
 
-	if(attack_bool):
+	if(attack_bool and death):
 		# load() - загружает сцену в переменную
 		var bullet_scene = load("res://ALL_scenes/bullet/bullet.tscn")
 		# .instantiate() - инициализирует сцену как узел (это нужно для дальнейшего использования)
@@ -70,3 +87,7 @@ func _on_timer_timeout() -> void:
 
 		# .add_child() - добавляет дочерний узел к узлу или к другой сцене
 		level.add_child(bullet)
+
+
+
+		

@@ -54,12 +54,15 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	# возвращает вошедшие группы
-	print(body.get_groups())
-	print(body.name)
+	#print(body.get_groups())
+	#print(body.name)
 	
 	
 	if(body.name == "Galaxy_ship"):
+		#print("ok if")
+		
 		body.hp_player -= 300
+		sprite2D.play("explosion")
 		await sprite2D.animation_finished
 		self.queue_free()
 		
@@ -76,7 +79,7 @@ func _on_body_entered(body: Node2D) -> void:
 				sprite2D.self_modulate = "#fff"
 			
 			
-			print("ok")
+			# смерть метеорита 
 			if(hp_meteorite <= 0):
 				sprite2D.play("explosion")
 				save_num_rotation = 0
