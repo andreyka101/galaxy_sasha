@@ -9,7 +9,8 @@ var death = true
 
 func _ready() -> void:
 	# таймер будет срабатывать в случайное время
-	timer.wait_time = randf_range(1 , 3)
+	# timer.wait_time = randf_range(1 , 3)
+	timer.start(randf_range(1 , 3))
 	# timer.autostart = true
 
 

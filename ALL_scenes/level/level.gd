@@ -21,8 +21,8 @@ func _ready() -> void:
 	for i in range(10):
 		# создаём корабли в случайных координатах по x
 		var enemyShip_1:Area2D = enemyShip_1_scene.instantiate()
-		#enemyShip_1.position = Vector2(randi_range(-200,1580),50)
-		enemyShip_1.position = Vector2(randi_range(200,1180),50)
+		# enemyShip_1.position = Vector2(randi_range(-200,1580),50)
+		enemyShip_1.position = Vector2(randi_range(0,1380),50)
 		add_child(enemyShip_1)
 	
 
