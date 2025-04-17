@@ -4,15 +4,32 @@ extends CharacterBody2D
 @onready var level = $".."
 @onready var marker:Marker2D = $"./Marker2D"
 var attack_bool:bool = false
-var hp_player = 250
+var hp_player = 100
 @onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
 var death = true
 var damage = false
+
+var hp_start_player = 100
 
 
 
 func  _physics_process(delta: float) -> void:
 	#print(hp_player)
+	
+	
+	# меняем анимацию исходя от процента hp
+	if((hp_start_player/100) * 100 >= hp_player and (hp_start_player/100) * 75 < hp_player and death):
+		print(hp_player)
+		sprite.play("100-75%")
+	elif((hp_start_player/100) * 75 >= hp_player and (hp_start_player/100) * 50 < hp_player and death):
+		#print(hp_player)
+		sprite.play("75-50%")
+	elif((hp_start_player/100) * 50 >= hp_player and (hp_start_player/100) * 25 < hp_player and death):
+		#print(hp_player)
+		sprite.play("50-25%")
+	elif((hp_start_player/100) * 25 >= hp_player and (hp_start_player/100) * 0 < hp_player and death):
+		#print(hp_player)
+		sprite.play("25-0%")
 	
 
 	# если hp у корабля меньше или равен нулю то

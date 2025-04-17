@@ -169,7 +169,7 @@ polygon = PackedVector2Array(0, -34, -24, 14, 0, 14, 24, 14)
 position = Vector2(0, 2.2)
 scale = Vector2(1.76667, 1.76667)
 sprite_frames = SubResource("SpriteFrames_xkvga")
-animation = &"100-75%"
+animation = &"25-0%"
 autoplay = "100-75%"
 
 [node name="Marker2D" type="Marker2D" parent="."]

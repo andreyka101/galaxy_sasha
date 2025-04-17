@@ -1,13 +1,24 @@
 extends Area2D
 
 
+var sideways_movement = false
+var position_save = null
+
+
 
 var damage_bullet = 100
 
 
+
 func _physics_process(delta: float) -> void:
-	# постоянная скорость пули
-	self.position.y += 400 * delta
+	# проверка как должка двигаться пуля прямо или в бок
+	if(sideways_movement):
+		# линейное движение до какой точки
+		self.position += self.position.direction_to(position_save) * 400 * delta
+	else:
+		# движение в низ
+		self.position.y += 400 * delta
+	
 	
 	
 	

@@ -37,6 +37,7 @@ size = Vector2(5, 11)
 script = ExtResource("1_3yspx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.532883, 0.532883, 1)
 sprite_frames = SubResource("SpriteFrames_q2jto")
 frame_progress = 0.127599
 flip_v = true
