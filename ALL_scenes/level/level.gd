@@ -60,8 +60,8 @@ func _ready() -> void:
 
 
 
-
-# сворачивание экрана на ESC
+# обработка нажатий
 func _input(event):
+	# сворачивание экрана на ESC
 	if(event.is_action_pressed("esc_key")):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
