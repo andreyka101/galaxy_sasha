@@ -74,7 +74,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Meteorite" type="Area2D"]
+[node name="Meteorite" type="Area2D" groups=["all_enemy"]]
 script = ExtResource("1_b5gxj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -4,12 +4,12 @@ extends CharacterBody2D
 @onready var level = $".."
 @onready var marker:Marker2D = $"./Marker2D"
 var attack_bool:bool = false
-var hp_player = 100
+var hp_player = 300
 @onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
 var death = true
 var damage = false
 
-var hp_start_player = 100
+var hp_start_player = 300
 
 
 
@@ -19,7 +19,7 @@ func  _physics_process(delta: float) -> void:
 	
 	# меняем анимацию исходя от процента hp
 	if((hp_start_player/100) * 100 >= hp_player and (hp_start_player/100) * 75 < hp_player and death):
-		print(hp_player)
+		#print(hp_player)
 		sprite.play("100-75%")
 	elif((hp_start_player/100) * 75 >= hp_player and (hp_start_player/100) * 50 < hp_player and death):
 		#print(hp_player)

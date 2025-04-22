@@ -51,7 +51,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="EnemyShip_2" type="Area2D"]
+[node name="EnemyShip_2" type="Area2D" groups=["all_enemy"]]
 scale = Vector2(1.6, 1.6)
 script = ExtResource("1_vxri1")
 
@@ -67,11 +67,15 @@ polygon = PackedVector2Array(0, 23, 16, -14, -16, -14)
 position = Vector2(0, 24.375)
 
 [node name="Marker2D_LEFT" type="Marker2D" parent="."]
-position = Vector2(-800, 1500)
+position = Vector2(-200, 1500)
 
 [node name="Marker2D_RIGHT" type="Marker2D" parent="."]
-position = Vector2(800, 1500)
+position = Vector2(200, 1500)
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Timer_position" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer_position" to="." method="_on_timer_position_timeout"]

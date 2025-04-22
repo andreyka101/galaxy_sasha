@@ -10,11 +10,25 @@ var damage_bullet = 100
 
 
 
-func _physics_process(delta: float) -> void:
-	# проверка как должка двигаться пуля прямо или в бок
+func  _ready() -> void:
+	# если пуля должка двигаться в бок то поворачиваем sprite на 90 градусов
 	if(sideways_movement):
-		# линейное движение до какой точки
+		$AnimatedSprite2D.rotation_degrees = 90
+
+
+
+
+func _physics_process(delta: float) -> void:
+	
+	
+	# проверка как должка двигаться пуля прямо или в бок
+	print(name , global_position)
+	if(sideways_movement):
+		# линейное движение до какой-то точки
 		self.position += self.position.direction_to(position_save) * 400 * delta
+		
+		# пуля смотрит на какую-то точку
+		look_at(position_save)
 	else:
 		# движение в низ
 		self.position.y += 400 * delta

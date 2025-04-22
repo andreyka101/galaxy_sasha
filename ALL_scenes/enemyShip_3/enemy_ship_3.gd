@@ -1,10 +1,13 @@
 extends Area2D
 
 
+
 var death = true
 @onready var level = $".."
 @onready var timer:Timer = $Timer
 @onready var marker:Marker2D = $Marker2D
+@onready var marker_LEFT:Marker2D = $Marker2D_LEFT
+@onready var marker_RIGHT:Marker2D = $Marker2D_RIGHT
 @onready var timer_position:Timer = $Timer_position
 var hp_ship = 300
 @onready var sprite2D:AnimatedSprite2D = $"AnimatedSprite2D"
@@ -37,10 +40,26 @@ func _physics_process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	#print("on_timer_timeout")
 	if(death):
+		# создаём две пули которые будут лететь в бок и одну пулю которая будут лететь прямо 
 		var bullet_scene = load("res://ALL_scenes/enemy_bullet/enemy_bullet.tscn")
+		# пуля 1 прямо ------------
 		var bullet:Area2D = bullet_scene.instantiate()
 		bullet.global_position = marker.global_position
 		level.add_child(bullet)
+		# пуля 2 в бок ------------
+		var bullet_LEFT:Area2D = bullet_scene.instantiate()
+		bullet_LEFT.global_position = marker.global_position
+		bullet_LEFT.position_save = marker_LEFT.global_position
+		bullet_LEFT.sideways_movement = true
+		level.add_child(bullet_LEFT)
+		# пуля 3 в бок ------------
+		var bullet_RIGHT:Area2D = bullet_scene.instantiate()
+		bullet_RIGHT.global_position = marker.global_position
+		bullet_RIGHT.position_save = marker_RIGHT.global_position
+		bullet_RIGHT.sideways_movement = true
+		level.add_child(bullet_RIGHT)
+		
+		
 		# таймер будет срабатывать в случайное время
 		timer.wait_time = randf_range(1 , 3)
 

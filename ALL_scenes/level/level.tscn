@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdw3xl8387e4f"]
+[gd_scene load_steps=3 format=3 uid="uid://bdw3xl8387e4f"]
 
 [ext_resource type="Script" uid="uid://dod02wyv88h72" path="res://ALL_scenes/level/level.gd" id="1_r62w2"]
 [ext_resource type="PackedScene" uid="uid://cwrkixbbjesk6" path="res://ALL_scenes/galaxy_ship/galaxy_ship.tscn" id="2_ekf4v"]
-[ext_resource type="PackedScene" uid="uid://cy3oss34dfs6h" path="res://ALL_scenes/enemyShip_2/enemy_ship_2.tscn" id="3_ekf4v"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_r62w2")
@@ -10,6 +9,3 @@ script = ExtResource("1_r62w2")
 [node name="Galaxy_ship" parent="." instance=ExtResource("2_ekf4v")]
 position = Vector2(669, 633)
 scale = Vector2(1.1, 1.1)
-
-[node name="EnemyShip_2" parent="." instance=ExtResource("3_ekf4v")]
-position = Vector2(646, 55)
