@@ -12,7 +12,7 @@ var save_num_rotation = randf_range(-5, 5)
 # создаём рандомную скорость перемещения
 var speed = randf_range(10, 200)
 
-var hp_meteorite:float
+var hp:float
 var sprite2D:AnimatedSprite2D
 
 
@@ -28,7 +28,7 @@ func _ready() -> void:
 	self.scale = Vector2(scale_num  , scale_num)
 
 	# задаём hp относительно размера
-	hp_meteorite = scale_num * 120
+	hp = scale_num * 120
 	
 	sprite2D = $AnimatedSprite2D
 	# рандомная анимация
@@ -49,6 +49,13 @@ func _process(delta: float) -> void:
 	
 	# вращение метеорита 
 	self.rotation_degrees += save_num_rotation
+	
+	
+	if(hp <= 0):
+		sprite2D.play("explosion")
+		save_num_rotation = 0
+		await sprite2D.animation_finished
+		self.queue_free()
 	
 
 
@@ -71,16 +78,16 @@ func _on_body_entered(body: Node2D) -> void:
 		#print(i_group)
 		# если в группе есть пуля то наносим урон метеориту и удаляем пулю
 		if(i_group == "group_bullet"):
-			hp_meteorite -= body.damage_bullet
+			hp -= body.damage_bullet
 			body.queue_free()
-			if(hp_meteorite > 0):
+			if(hp > 0):
 				sprite2D.self_modulate = "#ff4551"
 				await get_tree().create_timer(0.2).timeout
 				sprite2D.self_modulate = "#fff"
 			
 			
 			# смерть метеорита 
-			if(hp_meteorite <= 0):
+			if(hp <= 0):
 				sprite2D.play("explosion")
 				save_num_rotation = 0
 				await sprite2D.animation_finished

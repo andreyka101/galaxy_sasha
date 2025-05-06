@@ -9,7 +9,7 @@ var death = true
 @onready var marker_LEFT:Marker2D = $Marker2D_LEFT
 @onready var marker_RIGHT:Marker2D = $Marker2D_RIGHT
 @onready var timer_position:Timer = $Timer_position
-var hp_ship = 300
+var hp = 300
 @onready var sprite2D:AnimatedSprite2D = $"AnimatedSprite2D"
 
 var position_save = Vector2(randi_range(10 , 1270) , randi_range(10 , 350))
@@ -65,16 +65,16 @@ func _on_body_entered(body: Node2D) -> void:
 		#print(i_group)
 		# если в группе есть пуля то наносим урон кораблю и удаляем пулю
 		if(i_group == "group_bullet"):
-			hp_ship -= body.damage_bullet
+			hp -= body.damage_bullet
 			body.queue_free()
-			if(hp_ship > 0):
+			if(hp > 0):
 				sprite2D.self_modulate = "#ff4551"
 				await get_tree().create_timer(0.2).timeout
 				sprite2D.self_modulate = "#fff"
 			
 			
 			# смерть корабля
-			if(hp_ship <= 0):
+			if(hp <= 0):
 				death = false
 				sprite2D.play("explosion")
 				await sprite2D.animation_finished

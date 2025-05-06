@@ -3,7 +3,7 @@ extends Node2D
 
 
 
-func _ready() -> void:
+#func _ready() -> void:
 
 	# тип врага 1 - метеорит
 	#var meteorite_scene = load("res://ALL_scenes/meteorite/meteorite.tscn")
@@ -51,12 +51,12 @@ func _ready() -> void:
 	
 	
 	# тип врага 5 - круглый дрон
-	var drone_1_scene = load("res://ALL_scenes/drone_1/drone_1.tscn")
-	for i in range(10):
-		# создаём корабли в случайных координатах по x
-		var drone_1:Area2D = drone_1_scene.instantiate()
-		drone_1.position = Vector2(randi_range(0,1380),50)
-		add_child(drone_1)
+	#var drone_1_scene = load("res://ALL_scenes/drone_1/drone_1.tscn")
+	#for i in range(5):
+		## создаём корабли в случайных координатах по x
+		#var drone_1:Area2D = drone_1_scene.instantiate()
+		#drone_1.position = Vector2(randi_range(0,1380),50)
+		#add_child(drone_1)
 
 
 

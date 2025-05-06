@@ -1,10 +1,15 @@
 extends Area2D
 
 @onready var sprite_head:AnimatedSprite2D =  $AnimatedSprite2D_head
+@onready var sprite_fire:AnimatedSprite2D =  $AnimatedSprite2D_fire
 @onready var galaxy_ship:CharacterBody2D = $"../Galaxy_ship"
 var speed_rotation = 0
-var speed = randf_range(60 , 160)
-var hp_drone_1 = 50
+#var speed = randf_range(60 , 160)
+var speed = 160
+var hp = 50
+
+var arr_enemy = []
+
 
 
 func _ready() -> void:
@@ -32,11 +37,24 @@ func _process(delta: float) -> void:
 	
 	
 	# дрон всегда смотрит в сторону корабля игрока
-	look_at(galaxy_ship.position)
 
 
 	# дрон летит в сторону корабля игрока
-	position += self.position.direction_to(galaxy_ship.position) * speed * delta
+	if(galaxy_ship.position):
+		position += self.position.direction_to(galaxy_ship.position) * speed * delta
+		look_at(galaxy_ship.position)
+	
+	
+	if(hp <= 0):
+		sprite_fire.play("explosion")
+		sprite_head.play("explosion")
+		for element_scene in arr_enemy:
+			element_scene.hp -= 1000
+		speed_rotation = 0
+		speed = 0
+		await sprite_head.animation_finished
+		self.queue_free()
+	print(arr_enemy)
 	
 	
 
@@ -55,25 +73,49 @@ func _on_body_entered(body: Node2D) -> void:
 		#print(i_group)
 		# если в группе есть пуля то наносим урон дрону и удаляем пулю
 		if(i_group == "group_bullet"):
-			hp_drone_1 -= body.damage_bullet
+			hp -= body.damage_bullet
 			body.queue_free()
-			if(hp_drone_1 > 0):
+			if(hp > 0):
 				sprite_head.self_modulate = "#ff4551"
 				await get_tree().create_timer(0.2).timeout
 				sprite_head.self_modulate = "#fff"
 			
 			
 			# смерть дрона
-			if(hp_drone_1 <= 0):
+			if(hp <= 0):
+				sprite_fire.play("explosion")
 				sprite_head.play("explosion")
-				await sprite_head.animation_finished
+				for element_scene in arr_enemy:
+					element_scene.hp -= 1000
 				speed_rotation = 0
 				speed = 0
+				await sprite_head.animation_finished
 				self.queue_free()
 
 
-# func _on_boom_area_entered(area: Area2D) -> void:
-# 	for i_group in body.get_groups():
-# 		#print(i_group)
-# 		if(i_group == "group_bullet"):
-# 			i_group
+
+
+#func _on_boom_area_entered(area: Area2D) -> void:
+	#print(area)
+	#for el_group in area.get_groups():
+		#print(el_group)
+		#if(el_group == "all_enemy"):
+			#area.hp -= 1000
+			#print(area.hp)
+
+
+
+
+func _on_boom_area_entered(area: Area2D) -> void:
+	#print(area)
+	for el_group in area.get_groups():
+		if(el_group == "all_enemy"):
+			arr_enemy.append(area)
+			
+
+
+func _on_boom_area_exited(area: Area2D) -> void:
+	for el_group in area.get_groups():
+		if(el_group == "all_enemy"):
+			#print(arr_enemy.find(area))
+			arr_enemy.remove_at(arr_enemy.find(area))

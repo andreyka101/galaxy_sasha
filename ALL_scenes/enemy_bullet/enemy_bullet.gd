@@ -7,6 +7,8 @@ var position_save = null
 
 
 var damage_bullet = 100
+var speed_bullet = 400
+
 
 
 
@@ -25,13 +27,13 @@ func _physics_process(delta: float) -> void:
 	print(name , global_position)
 	if(sideways_movement):
 		# линейное движение до какой-то точки
-		self.position += self.position.direction_to(position_save) * 400 * delta
+		self.position += self.position.direction_to(position_save) * speed_bullet * delta
 		
 		# пуля смотрит на какую-то точку
 		look_at(position_save)
 	else:
 		# движение в низ
-		self.position.y += 400 * delta
+		self.position.y += speed_bullet * delta
 	
 	
 	
